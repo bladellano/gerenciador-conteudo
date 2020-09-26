@@ -1,0 +1,22 @@
+{
+    "name": "bladellano/gerenciador",
+    "authors": [{
+        "name": "Caio Dellano",
+        "email": "bladellano@gmail.com"
+    }],
+    "require": {
+        "phpmailer/phpmailer": "5.2.22",
+        "slim/slim": "2.0",
+        "rain/raintpl": "3.0.0",
+        "coffeecode/uploader": "1.0.*",
+        "fzaninotto/faker": "1.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+          "source/Config.php"
+        ]
+    }
+}

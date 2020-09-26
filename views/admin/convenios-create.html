@@ -1,0 +1,68 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Convênios
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/convenios">Convênios</a></li>
+            <li class="active"><a href="/admin/convenios/create">Cadastrar</a></li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="box box-success">
+                    {if="$msgError != ''"}
+                    <div class="alert alert-danger alert-dismissible" style="margin:10px">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <p>{$msgError}</p>
+                    </div>
+                    {/if}
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Novo Convênio</h3>
+                    </div>
+                    <form role="form" action="/admin/convenios/create" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="company">Empresa</label>
+                                <input type="text" class="form-control" id="company" name="company" placeholder="Digite o nome da empresa">
+                            </div>
+                            <div class="form-group">
+                                <label for="description"><b>Descrição:</b></label>
+                                <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Endereço</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Digite o endereço completo">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefone(s)</label>
+                                <input type="tel" class="form-control" id="phones" name="phones" placeholder="Digite o(s) telefone(s)">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
+                            </div>                      
+                         
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

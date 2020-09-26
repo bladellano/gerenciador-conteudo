@@ -1,0 +1,71 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Planos
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/planos">Planos</a></li>
+            <li class="active"><a href="/admin/planos/create">Cadastrar</a></li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="box box-success">
+                    {if="$msgError != ''"}
+                    <div class="alert alert-danger alert-dismissible" style="margin:10px">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <p>{$msgError}</p>
+                    </div>
+                    {/if}
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Novo Plano</h3>
+                    </div>
+                    <form role="form" action="/admin/planos/create" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="plan">Plano</label>
+                                <input type="text" class="form-control" id="plan" name="plan" placeholder="Digite o nome da empresa">
+                            </div>
+                            <div class="form-group">
+                                <label for="description"><b>Descrição:</b></label>
+                                <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="checkbox icheck">
+                                <label>
+                                  <input type="checkbox" name="travel" id="travel" value=1>
+                                  Direito a viagem. 
+                                </label>
+                              </div>
+                            <div class="row">
+                                <div class="form-group col-md-6"><label for="qtd_people
+                                    qtd_people">Quantidade de Pessoas:</label>
+                                    <input type="number" class="form-control" id="qtd_people" name="qtd_people">
+                                </div>
+                                <div class="form-group col-md-6"><label for="percentage">Porcentagem:</label>
+                                    <input type="number" class="form-control" id="percentage" name="percentage">
+                                </div>                               
+                            </div>
+                         
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
