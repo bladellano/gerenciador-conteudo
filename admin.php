@@ -2,13 +2,24 @@
 
 use Source\PageAdmin;
 use Source\Model\User;
+use Source\Model\Article;
+use Source\Model\Convenio;
+use Source\Model\Plano;
 
 $app->get('/admin', function () {
 
     User::verifyLogin();
 
+    $articles = count(Article::listAll());
+    $convenios = count(Convenio::listAll());
+    $planos = count(Plano::listAll());
+
     $page = new PageAdmin();
-    $page->setTpl("index");
+    $page->setTpl("index",[
+        "qtdArticles" => $articles,
+        "qtdConvenios" => $convenios,
+        "qtdPlanos" => $planos,
+    ]);
 });
 
 /**

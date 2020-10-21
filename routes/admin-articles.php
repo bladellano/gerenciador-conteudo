@@ -42,13 +42,7 @@ $app->get('/admin/artigos', function () {
 $app->post('/admin/artigos/create', function () {
 
     User::verifyLogin();
-//PROBLEMAS EM DELETAR ARTIGO
-//PROBLEMAS EM DELETAR ARTIGO
-//PROBLEMAS EM DELETAR ARTIGO
-//PROBLEMAS EM DELETAR ARTIGO
-//PROBLEMAS EM DELETAR ARTIGO
-//PROBLEMAS EM DELETAR ARTIGO
-//PROBLEMAS EM DELETAR ARTIGO
+
     $upload  = new Image("storage/images", "articles");
     $article = new Article();
 
@@ -73,7 +67,7 @@ $app->post('/admin/artigos/create', function () {
             exit;
         } else {
 
-            $image_thumb = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 100);
+            $image_thumb = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 300);
             $image = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 600);
 
             $data['image'] = $image;
@@ -161,8 +155,8 @@ $app->post("/admin/artigos/:id", function ($id) {
             exit;
         } else {
 
-            $_POST['image'] = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 100);
-            $_POST['image_thumb'] = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 600);
+            $_POST['image'] = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 600);
+            $_POST['image_thumb'] = $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 300);
         }
     }
 
