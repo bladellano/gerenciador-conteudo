@@ -10,7 +10,7 @@ function formatPrice($vlprice)
 }
 function formatDate($date)
 {
-    return date("d/m/Y",strtotime($date));
+    return date("d/m/Y", strtotime($date));
 }
 function checkLogin($inadmin = true)
 {
@@ -34,7 +34,18 @@ function getCartVlSubTotal()
 {
     $cart = Cart::getFromSession();
     $totals = $cart->getProductsTotals();
-    
+
     return formatPrice($totals['vlprice']);
 }
 
+function url(string $path): string
+{
+    if ($path)
+        return URL_BASE . $path;
+    return URL_BASE;
+}
+
+function message(string $message, string $type): string
+{
+    return "<div class=\"message {$type}\">{$message}</div>";
+}

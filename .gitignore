@@ -2,3 +2,4 @@ views-cache/
 .vscode
 /vendor/
 /tmp/
+/cgi-bin
