@@ -4,15 +4,11 @@ namespace Source\DB;
 
 class Sql {
 
-	/* const HOSTNAME = "127.0.0.1";
-	const USERNAME = "admin";
-	const PASSWORD = "admin";
-	const DBNAME = "db_ecommerce_editado"; */
-
 	const HOSTNAME = DB_SITE['host'];
 	const USERNAME = DB_SITE['username'];
 	const PASSWORD = DB_SITE['passwd'];
 	const DBNAME = DB_SITE['dbname'];
+	const OPTIONS = DB_SITE['options'];
 
 	private $conn;
 
@@ -22,7 +18,8 @@ class Sql {
 		$this->conn = new \PDO(
 			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
 			Sql::USERNAME,
-			Sql::PASSWORD
+			Sql::PASSWORD,
+			Sql::OPTIONS
 		);
 
 	}
@@ -71,4 +68,4 @@ class Sql {
 
 }
 
- ?>
+?>

@@ -4,48 +4,47 @@ use \Source\PageAdmin;
 use \Source\Model\User;
 use \Source\Model\Order;
 use \Source\Model\OrderStatus;
+use \Source\Support\Payment;
 
-$app->get("/admin/orders/:idorder/status",function($idorder){
-    
+$app->get("/admin/orders/:idorder/status", function ($idorder) {
+
     User::verifyLogin();
 
     $order = new Order();
 
-    $order->get((int)$idorder);
+    $order->get((int) $idorder);
 
     $page = new PageAdmin();
 
-    $page->setTpl("order-status",[
-        'order'=> $order->getValues(),
-        'status'=> OrderStatus::listAll(),
+    $page->setTpl("order-status", [
+        'order' => $order->getValues(),
+        'status' => OrderStatus::listAll(),
         'msgSuccess' => Order::getSuccess(),
-        'msgError'=> Order::getError()
+        'msgError' => Order::getError()
     ]);
-
 });
 
-$app->post("/admin/orders/:idorder/status",function($idorder){
+$app->post("/admin/orders/:idorder/status", function ($idorder) {
     User::verifyLogin();
 
-    if(!isset($_POST['idstatus']) || !(int)$_POST['idstatus'] > 0){
+    if (!isset($_POST['idstatus']) || !(int) $_POST['idstatus'] > 0) {
         Order::setError("Informe o status atual.");
-        header("Location: /admin/orders/".$idorder."/status");
+        header("Location: /admin/orders/" . $idorder . "/status");
         exit;
     }
 
     $order = new Order();
 
-    $order->get((int)$idorder);
+    $order->get((int) $idorder);
 
-    $order->setidstatus((int)$_POST['idstatus']);
+    $order->setidstatus((int) $_POST['idstatus']);
 
     $order->save();
 
     Order::setSuccess("Status atualizado.");
-    
-    header("Location: /admin/orders/".$idorder."/status");
-    exit;
 
+    header("Location: /admin/orders/" . $idorder . "/status");
+    exit;
 });
 
 $app->get("/admin/orders/:idorder/delete", function ($idorder) {
@@ -71,7 +70,7 @@ $app->get("/admin/orders/:idorder", function ($idorder) {
     $order->get((int) $idorder);
 
     $cart = $order->getCart();
-    
+
     $page = new PageAdmin();
 
     $page->setTpl("order", [
@@ -86,32 +85,39 @@ $app->get("/admin/orders", function () {
 
     User::verifyLogin();
 
-    $search = (isset($_GET['search'])) ? $_GET['search']: "";    
-    $page = (isset($_GET['page'])) ? (int)$_GET['page']: 1;
+    $oAsaas = (new Payment())->listPayments();
+    $aResultAsaas = (array) $oAsaas->callback()->data;
 
-    if($search != ''){
-        $pagination = Order::getPageSearch(trim($search),$page);
+    foreach ($aResultAsaas as &$pay)
+        $pay = (array) $pay;
+
+    $search = (isset($_GET['search'])) ? $_GET['search'] : "";
+    $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+
+    if ($search != '') {
+        $pagination = Order::getPageSearch(trim($search), $page);
     } else {
         $pagination = Order::getPage($page);
-    }   
+    }
 
     $pages = [];
 
-    for ($x=0; $x <  $pagination['pages'] ; $x++) { 
+    for ($x = 0; $x <  $pagination['pages']; $x++) {
         array_push($pages, [
-            'href'=>'/admin/orders?'.http_build_query([
-                'page'=>$x+1,
-                'search'=>$search
+            'href' => '/admin/orders?' . http_build_query([
+                'page' => $x + 1,
+                'search' => $search
             ]),
-            'text'=>$x+1
+            'text' => $x + 1
         ]);
     }
 
     $page = new PageAdmin();
 
     $page->setTpl("orders", [
-        "orders" => $pagination['data'],
+        // "orders" => $pagination['data'],
+        "orders" => $aResultAsaas,
         "search" => $search,
-        "pages"=> $pages
+        "pages" => $pages
     ]);
 });

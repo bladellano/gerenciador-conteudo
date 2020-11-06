@@ -3,3 +3,4 @@ views-cache/
 /vendor/
 /tmp/
 /cgi-bin
+/source/Config.php

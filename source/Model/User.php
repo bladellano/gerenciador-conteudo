@@ -114,9 +114,8 @@ class User extends Model
     public function save()
     {
         $sql = new Sql();
-
         $results = $sql->select(
-            "CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)",
+            "CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin, :idcustomer, :descpf)",
             array(
                 ":desperson" => utf8_decode($this->getdesperson()),
                 ":deslogin" => $this->getdeslogin(),
@@ -124,6 +123,8 @@ class User extends Model
                 ":desemail" => $this->getdesemail(),
                 ":nrphone" => $this->getnrphone(),
                 ":inadmin" => $this->getinadmin(),
+                ":idcustomer" => 0,
+                ":descpf" => $this->getdescpf()
             )
         );
 
