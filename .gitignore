@@ -4,3 +4,6 @@ views-cache/
 /tmp/
 /cgi-bin
 /source/Config.php
+/storage
+/views-cache
+composer.phar
