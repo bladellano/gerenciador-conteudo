@@ -5,6 +5,7 @@ use Source\Model\User;
 use Source\Model\Article;
 use Source\Model\Convenio;
 use Source\Model\Plano;
+use Source\Support\Payment;
 
 $app->get('/admin', function () {
 
@@ -13,12 +14,15 @@ $app->get('/admin', function () {
     $articles = count(Article::listAll());
     $convenios = count(Convenio::listAll());
     $planos = count(Plano::listAll());
+    $totalPedidos = count((new Payment())
+        ->listPayments()->callback()->data);
 
     $page = new PageAdmin();
-    $page->setTpl("index",[
+    $page->setTpl("index", [
         "qtdArticles" => $articles,
         "qtdConvenios" => $convenios,
         "qtdPlanos" => $planos,
+        "qtdPedidos" => $totalPedidos,
     ]);
 });
 

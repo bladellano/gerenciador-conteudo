@@ -36,11 +36,12 @@
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Criado</th>
+                  <th>Solicitado em</th>
+                  <th>Descrição</th>
                   <th>Valor</th>
                   <th>Tipo</th>
-                  <th>Detalhes</th>
-                  <th>PDF</th>
+                  <th class="text-left">Detalhes</th>
+                  <th class="text-center">PDF</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -49,14 +50,15 @@
                 <tr>
                   <td>{$value.id}</td>
                   <td>{function="formatDate($value.dateCreated)"}</td>
+                  <td>{$value.description}</td>
                   <td>R$ {function="formatPrice($value.value)"}</td>
                   <td>{$value.billingType}</td>
                   <td>
-                    <a href="{$value.invoiceUrl}" target="_blank">[+]</a>
+                    <a class="btn btn-primary" href="{$value.invoiceUrl}" target="_blank">Detalhes</a>
                   </td>
                   <td>
                     {if="$value.bankSlipUrl!=''"}
-                    <a href="{$value.bankSlipUrl}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                    <a class="btn btn-warning btn-block" href="{$value.bankSlipUrl}" target="_blank">Boleto</a>
                     {else} {/if}
                   </td>
                   <td>{$value.status}</td>

@@ -9,7 +9,8 @@
     use Source\Model\Order;
     use Source\Model\OrderStatus;
 
-    $app->get('/', function () {
+    $app->get('/', function () use ($app)  {
+        $app->redirect('/admin');//Redireciona direto para o admin.
         $products = Products::listAll();
         $page = new Page();
         $page->setTpl("index", [
