@@ -33,7 +33,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="company">Empresa</label>
-                                <input type="text" class="form-control" id="company" name="company" placeholder="Digite o nome da empresa">
+                                <input value="{$_SESSION['recoversConvenio']['company']}" type="text" class="form-control" id="company" name="company" placeholder="Digite o nome da empresa">
                             </div>
                             <div class="form-group">
                                 <label for="description"><b>Descrição:</b></label>
@@ -41,15 +41,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="address">Endereço</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="Digite o endereço completo">
+                                <input value="{$_SESSION['recoversConvenio']['address']}" type="text" class="form-control" id="address" name="address" placeholder="Digite o endereço completo">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Telefone(s)</label>
-                                <input type="tel" class="form-control" id="phones" name="phones" placeholder="Digite o(s) telefone(s)">
+                                <input value="{$_SESSION['recoversConvenio']['phones']}" type="tel" class="form-control" id="phones" name="phones" placeholder="Digite o(s) telefone(s)">
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
+                                <input value="{$_SESSION['recoversConvenio']['email']}" type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
                             </div>                      
                          
                         </div>

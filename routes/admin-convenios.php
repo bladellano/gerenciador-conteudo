@@ -49,6 +49,8 @@ $app->post("/admin/convenios/create", function () {
 
     $data = filter_var_array($_POST,FILTER_SANITIZE_STRING);
 
+    $_SESSION['recoversConvenio'] = $_POST;
+
     if(in_array("",$data)){
         Convenio::setError('Preencha todos os campos.');        
         header("Location: /admin/convenios/create");
@@ -59,6 +61,7 @@ $app->post("/admin/convenios/create", function () {
     $convenio->setData($data);
 
     $convenio->save();
+    unset($_SESSION['recoversConvenio']);
     header("Location:/admin/convenios");
     exit;
 });
